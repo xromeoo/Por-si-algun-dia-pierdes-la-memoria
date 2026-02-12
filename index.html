@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia de Amor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffe0f0 0%, #ffb3d9 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff69b4 0%, #e91e8c 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            color: #ff69b4;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 5px solid #ff69b4;
+            padding-left: 20px;
+        }
+
+        .section p {
+            line-height: 1.8;
+            font-size: 1.1em;
+            color: #333;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            border-left: 3px solid #ff69b4;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '❤';
+            position: absolute;
+            left: -53px;
+            background: white;
+            border: 3px solid #ff69b4;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .timeline-date {
+            color: #ff69b4;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content {
+            background: #fff0f6;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff69b4;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .reason-card {
+            background: linear-gradient(135deg, #fff0f6 0%, #ffe6f2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255,105,180,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255,105,180,0.2);
+        }
+
+        .reason-card h3 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .footer {
+            background: #ff69b4;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2em;
+        }
+
+        .heart {
+            display: inline-block;
+            color: #ff69b4;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-caption {
+            background: rgba(255,105,180,0.95);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .timeline-photo {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .header-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin: 20px auto;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .photo-item img {
+                height: 250px;
+            }
+
+            .header-photo {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Puedes poner una foto de ustedes aquí -->
+            <div style="text-align: center;">
+                <img src="https://i.imgur.com/kJsIK2D.jpeg" class="header-photo">
+            </div>
+            <!-- Si no quieres foto en el header, borra la línea de arriba -->
+            
+            <h1>Por si algún día pierdes la memoria</h1>
+            <p>Nuestra historia</p>
+        </div>
+
+        <div class="content">
+            <!-- Introducción -->
+            <div class="section">
+                <h2>Cómo Empezó Todo <span class="heart">❤</span></h2>
+                <p>
+                    Seis millones doscientas mil personas saben cómo empezó todo, 
+                    con un mensaje que por muy tonto que fuese, cambiaría mi vida.
+                    No estoy por una parte muy orgulloso de la manera en que nos conocimos, más que nada porque
+                    fue a través de Instagram, pero estoy completamente orgulloso de haber tomado la decisión 
+                    de escribirte un 29 de diciembre de 2023 aquel mensaje. 
+                </p>
+                <p>
+                    Primero te dije que una cuenta se estaba haciendo pasar por ti, esperando que respondieses rápido
+                    llamando tu atención, cosa que desde un principio no hiciste y preferiste esperar 1 día entero por si te estaba cafreando.
+                    Una vez tomaste la mejor decisión de tu vida, te condenaste a tener a un intenso desde el primer día. 
+                    Fue toda una sorpresa cuando te mandé la cuenta de Ferrero Rocher y ahí descubriste mis grandes dotes humorísticos.
+                    Ese momento fue un punto de inflexión (que por si no sabes lo que es, es cuando la segunda derivada de una función se hace 0),
+                    a partir de ahí comenzaría nuestra historia, ¿o no fue tan así...?
+                </p>
+                <p>
+                    Cometí mi primer fallo la primera vez que hablamos, llevabámos apenas unas 2 semanas conociéndonos por primera vez,
+                    te diste cuenta que era un pelín más diferente que los demás, viste que por fin había alguien que quería saber de ti 
+                    todo el día, aunque tú no mostrases el mismo interés y me mintieses diciendo que te ibas a dormir pero en realidad 
+                    era tu época lectora, y solo querías estar un rato tranquila leyendo. Sin embargo, cuando ya empezabas a interesarte por mí, 
+                    cuando yo te propuse que vinieras a mi casa a hacer tortitas, decidí simplemente desaparecer de tu vida de manera inmadura,
+                    ya que a conciencia, te contestaba más tarde y seco para que no quisieras saber nada de mí, lo cual funcionó durante un tiempo.
+                </p>
+                <p>
+                    En ese periodo de tiempo, me di cuenta de la oportunidad que había perdido contigo, porque desde la primera vez que hablamos 
+                    noté que contigo era distinto, me transmitías algo que a día de hoy sigo sin poder explicar. Después de haberla cagado monumentalmente 
+                    tuve los santos huevos de felicitarte en tu cumple, a lo que recibí "me estas vacilando no?". Bueno... esta vez no era mi intención,
+                    aun así totalmente justificada la respuesta, y me dejaste claro que no querías saber nada más de mí. O al menos hasta que pasaron unos meses...
+                </p>
+            </div>
+
+            <!-- Segunda Oportunidad -->
+            <div class="section">
+                <h2>Segunda Oportunidad (Spoiler: Termina Mal) <span class="heart">❤</span></h2>
+                <p>
+                    Tras unos meses sin saber nada el uno del otro, me saliste en "Para Ti" en TikTok, te di un "Me gusta" tontorrón,
+                    me seguiste por TikTok para ver si te seguía el rollo (obviamente fue así)
+                </p>
+                <p>
+                    Cuenta los detalles de lo que ocurrió, los momentos que compartieron, las razones por las que
+                    no salió como esperabas, pero también por qué fue importante en tu historia juntos...
+                </p>
+            </div>
+
+            <!-- Chocalá Diciembre -->
+            <div class="section">
+                <h2>Chocalá Diciembre <span class="heart">❤</span></h2>
+                <p>
+                    Escribe aquí sobre ese momento especial en diciembre, cómo fue que finalmente las cosas
+                    se alinearon, qué hizo que esta vez fuera diferente...
+                </p>
+                <p>
+                    Describe ese "chocalá" que cambió todo, los sentimientos de ese momento, y cómo supiste
+                    que esta vez sí era el momento correcto para estar juntos...
+                </p>
+            </div>
+
+            <!-- Línea de tiempo -->
+            <div class="section">
+                <h2>Nuestra Línea del Tiempo <span class="heart">❤</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Primera cita - [Fecha]</div>
+                        <div class="timeline-content">
+                            <p>Describe cómo fue su primera cita, qué hicieron, cómo te sentiste, qué te hizo enamorarte más...</p>
+                            <!-- Puedes agregar una foto aquí -->
+                            <img src="URL_DE_TU_FOTO_1" alt="Primera cita" class="timeline-photo">
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Nuestro primer beso - [Fecha]</div>
+                        <div class="timeline-content">
+                            <p>Cuenta la historia de su primer beso, el momento mágico en que todo se sintió perfecto...</p>
+                            <!-- Puedes agregar una foto aquí -->
+                            <img src="URL_DE_TU_FOTO_2" alt="Primer beso" class="timeline-photo">
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Cuando supe que eras la indicada - [Fecha]</div>
+                        <div class="timeline-content">
+                            <p>Ese momento en que te diste cuenta de que ella era la persona con quien querías estar...</p>
+                            <!-- Puedes agregar una foto aquí -->
+                            <img src="URL_DE_TU_FOTO_3" alt="Momento especial" class="timeline-photo">
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Hoy y siempre - [Fecha actual]</div>
+                        <div class="timeline-content">
+                            <p>Por qué sigues enamorado, cómo ha crecido ese amor, hacia dónde van juntos...</p>
+                            <!-- Puedes agregar una foto aquí -->
+                            <img src="URL_DE_TU_FOTO_4" alt="Hoy" class="timeline-photo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Razones por las que la amas -->
+            <div class="section">
+                <h2>Las Razones de Mi Amor <span class="heart">❤</span></h2>
+                <p>Hay tantas razones por las que te amo, pero estas son algunas de las más importantes:</p>
+                
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <h3>Tu Sonrisa</h3>
+                        <p>Describe qué te hace sentir su sonrisa, cómo ilumina tus días...</p>
+                    </div>
+
+                    <div class="reason-card">
+                        <h3>Tu Manera de Ser</h3>
+                        <p>Habla sobre su personalidad, lo que la hace única y especial...</p>
+                    </div>
+
+                    <div class="reason-card">
+                        <h3>Cómo Me Haces Sentir</h3>
+                        <p>Describe los sentimientos que te genera, cómo ha cambiado tu vida...</p>
+                    </div>
+
+                    <div class="reason-card">
+                        <h3>Tu Apoyo Incondicional</h3>
+                        <p>Cuenta cómo ella te apoya en los momentos difíciles...</p>
+                    </div>
+
+                    <div class="reason-card">
+                        <h3>Nuestras Aventuras Juntos</h3>
+                        <p>Menciona los momentos especiales que han vivido juntos...</p>
+                    </div>
+
+                    <div class="reason-card">
+                        <h3>El Futuro Que Construiremos</h3>
+                        <p>Habla sobre tus sueños y planes con ella...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galería de fotos -->
+            <div class="section">
+                <h2>Nuestros Momentos Especiales <span class="heart">❤</span></h2>
+                <p>Cada foto cuenta una historia, cada momento es un tesoro...</p>
+                
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <img src="URL_DE_TU_FOTO_5" alt="Momento 1">
+                        <div class="photo-caption">Describe este momento especial</div>
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="URL_DE_TU_FOTO_6" alt="Momento 2">
+                        <div class="photo-caption">Describe este momento especial</div>
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="URL_DE_TU_FOTO_7" alt="Momento 3">
+                        <div class="photo-caption">Describe este momento especial</div>
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="URL_DE_TU_FOTO_8" alt="Momento 4">
+                        <div class="photo-caption">Describe este momento especial</div>
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="URL_DE_TU_FOTO_9" alt="Momento 5">
+                        <div class="photo-caption">Describe este momento especial</div>
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="URL_DE_TU_FOTO_10" alt="Momento 6">
+                        <div class="photo-caption">Describe este momento especial</div>
+                    </div>
+                </div>
+                
+                <!-- Puedes agregar más fotos copiando este bloque:
+                <div class="photo-item">
+                    <img src="URL_DE_TU_FOTO" alt="Descripción">
+                    <div class="photo-caption">Tu descripción aquí</div>
+                </div>
+                -->
+            </div>
+
+            <!-- Mensaje final -->
+            <div class="section">
+                <h2>Para Ti, Mi Amor <span class="heart">❤</span></h2>
+                <p>
+                    Aquí puedes escribir un mensaje final, tus sentimientos más profundos, lo que significa para ti,
+                    tus promesas, tus sueños juntos...
+                </p>
+                <p>
+                    Cada día a tu lado es un regalo. Gracias por existir, por amarme, por ser mi compañera en esta aventura
+                    llamada vida. Te amo más de lo que las palabras pueden expresar.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            Con todo mi amor, siempre <span class="heart">❤</span>
+        </div>
+    </div>
+</body>
+</html>
